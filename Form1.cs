@@ -28,6 +28,7 @@ namespace New_app
                 {
                     // Если это и не файл, и не папка, то выдаем сообщение об ошибке
                     MessageBox.Show("По этому пути ничего не найдено", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    button.Enabled = false;
                     TextBox.Text = null;
                     label2.Visible = false;
                     label2.Text = null;
@@ -103,14 +104,14 @@ namespace New_app
         //Информация о файле при вставке пути на файл вручную
         private void TextBox_TextChanged(object sender, EventArgs e)
         {
+            TextBox.Text = TextBox.Text.Trim('"');
             // Проверка на наличие чего-либо в textbox
-            if (TextBox.Text != null)
+            if (TextBox.Text != "")
             {
-                TextBox.Text = TextBox.Text.Trim('"');
-                button.Enabled = true;
                 // Проверка файла на существование и выдача информации
-                if(File.Exists(TextBox.Text))
+                if (File.Exists(TextBox.Text))
                 {
+                    button.Enabled = true;
                     label1.Visible = true;
                     label1.Text = "Информация о файле:";
                     label2.Text = $"Создан: " + File.GetCreationTime(TextBox.Text) +
@@ -118,8 +119,9 @@ namespace New_app
                                    "\n Изменялся: " + File.GetLastWriteTime(TextBox.Text) +
                                    "\n Размер файла: " + (Math.Round(Convert.ToDouble(File.ReadAllBytes(TextBox.Text).Length) / 1048576.0, 2)) + " мбайт";
                 }
-                else if(Directory.Exists(TextBox.Text))
+                else if (Directory.Exists(TextBox.Text))
                 {
+                    button.Enabled = true;
                     label1.Visible = true;
                     label1.Text = "Информация о папке:";
                     DirectoryInfo FolderInfo = new DirectoryInfo(TextBox.Text);
@@ -129,6 +131,7 @@ namespace New_app
                 {
                     label1.Visible = false;
                     label2.Text = null;
+                    button.Enabled = false;
                 }
             }
             //Если textbox стал пустым - скрываем лишнюю информацию

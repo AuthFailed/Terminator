@@ -113,9 +113,9 @@
             // 
             this.button.Enabled = false;
             this.button.Font = new System.Drawing.Font("Yu Gothic UI", 14.25F);
-            this.button.Location = new System.Drawing.Point(151, 257);
+            this.button.Location = new System.Drawing.Point(145, 257);
             this.button.Name = "button";
-            this.button.Size = new System.Drawing.Size(145, 31);
+            this.button.Size = new System.Drawing.Size(148, 34);
             this.button.TabIndex = 6;
             this.button.TabStop = false;
             this.button.Text = "Удалить";
