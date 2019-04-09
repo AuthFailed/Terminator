@@ -81,8 +81,12 @@ namespace New_app
         }
 
         // Событие загрузки формы
-        void Form1_Load(object sender, EventArgs e)
+        async void Form1_Load(object sender, EventArgs e)
         {
+            for (Opacity = 0; Opacity < .98; Opacity += .03)
+            {
+                await Task.Delay(5);
+            }
             ToolTip t = new ToolTip();
             t.SetToolTip(TextBox, "Введите полный путь");
             t.SetToolTip(button1, "Открыть меню выбор файла");
