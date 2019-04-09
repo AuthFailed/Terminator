@@ -83,18 +83,17 @@ namespace New_app
         // Событие загрузки формы
         async void Form1_Load(object sender, EventArgs e)
         {
-            for (Opacity = 0; Opacity < .98; Opacity += .03)
-            {
-                await Task.Delay(5);
-            }
             ToolTip t = new ToolTip();
             t.SetToolTip(TextBox, "Введите полный путь");
             t.SetToolTip(button1, "Открыть меню выбор файла");
             label1.Visible = false;
+            for (Opacity = 0; Opacity < .98; Opacity += .03d)
+            {
+                await Task.Delay(5);
+            }
         }
-
-        // Диалоговое окно с выбором файла и запись пути в textbox
-        void BunifuThinButton21_Click(object sender, EventArgs e)
+    // Диалоговое окно с выбором файла и запись пути в textbox
+    void BunifuThinButton21_Click(object sender, EventArgs e)
         {
             OpenFileDialog myFile = new OpenFileDialog
             {
