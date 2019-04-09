@@ -35,6 +35,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.bunifuThinButton21 = new Bunifu.Framework.UI.BunifuThinButton2();
             this.button = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label
@@ -122,12 +123,22 @@
             this.button.UseVisualStyleBackColor = true;
             this.button.Click += new System.EventHandler(this.Button_Click);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(357, 258);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 7;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.ClientSize = new System.Drawing.Size(438, 299);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.button);
             this.Controls.Add(this.bunifuThinButton21);
             this.Controls.Add(this.label2);
@@ -154,6 +165,7 @@
         private System.Windows.Forms.Label label2;
         private Bunifu.Framework.UI.BunifuThinButton2 bunifuThinButton21;
         private System.Windows.Forms.Button button;
+        private System.Windows.Forms.Button button1;
     }
 }
 
