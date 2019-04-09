@@ -38,11 +38,12 @@ namespace New_app
                     DialogResult result = MessageBox.Show("Вы уверены?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (result == DialogResult.Yes)
                     {
-                        Directory.Delete((line),true);
-                        if (Directory.Exists(line))
+                        string foldername = new DirectoryInfo(TextBox.Text).Name;
+                        Directory.Delete((line),true); //true - если директория не пуста удаляем все ее содержимое
+                        if (!Directory.Exists(line))
                         {
                             // Если пользователь ответил согласием - удаляем папку и выводим оповещение об удалении
-                            Mess("Папка успешно удалена", null);
+                            Mess($"Папка {foldername} успешно удалена", "");
                             TextBox.Text = null;
                             label1.Visible = false;
                             label2.Text = null;
@@ -57,11 +58,12 @@ namespace New_app
                 DialogResult result = MessageBox.Show("Вы уверены?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (result == DialogResult.Yes)
                 {
+                    string filename = new FileInfo(TextBox.Text).Name;
                     File.Delete(line);
                     if (!File.Exists(line))
                     {
                         // Если пользователь ответил согласием - удаляем файл и выводим оповещение об удалении
-                        Mess("Файл успешно удален", null);
+                        Mess($"Файл {filename} успешно удален", null);
                         TextBox.Text = null;
                         label1.Visible = false;
                         label2.Text = null;
