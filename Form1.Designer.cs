@@ -45,9 +45,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label.Font = new System.Drawing.Font("Yu Gothic UI", 14.25F);
-            this.label.Location = new System.Drawing.Point(143, 13);
+            this.label.Location = new System.Drawing.Point(145, 13);
             this.label.Name = "label";
-            this.label.Size = new System.Drawing.Size(153, 34);
+            this.label.Size = new System.Drawing.Size(157, 31);
             this.label.TabIndex = 0;
             this.label.Text = "Укажите путь";
             this.label.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -56,7 +56,7 @@
             // 
             this.TextBox.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.TextBox.Font = new System.Drawing.Font("Microsoft YaHei UI Light", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.TextBox.Location = new System.Drawing.Point(11, 50);
+            this.TextBox.Location = new System.Drawing.Point(13, 50);
             this.TextBox.Multiline = true;
             this.TextBox.Name = "TextBox";
             this.TextBox.Size = new System.Drawing.Size(416, 26);
@@ -68,7 +68,7 @@
             // label1
             // 
             this.label1.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(111, 123);
+            this.label1.Location = new System.Drawing.Point(113, 123);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(217, 25);
             this.label1.TabIndex = 3;
@@ -77,7 +77,7 @@
             // label2
             // 
             this.label2.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label2.Location = new System.Drawing.Point(12, 148);
+            this.label2.Location = new System.Drawing.Point(14, 148);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(416, 106);
             this.label2.TabIndex = 4;
@@ -101,7 +101,7 @@
             this.button1.IdleFillColor = System.Drawing.Color.White;
             this.button1.IdleForecolor = System.Drawing.SystemColors.ControlText;
             this.button1.IdleLineColor = System.Drawing.Color.Gainsboro;
-            this.button1.Location = new System.Drawing.Point(45, 84);
+            this.button1.Location = new System.Drawing.Point(47, 84);
             this.button1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(153, 37);
@@ -112,16 +112,21 @@
             // button
             // 
             this.button.Enabled = false;
+            this.button.FlatAppearance.BorderColor = System.Drawing.Color.Gainsboro;
+            this.button.FlatAppearance.BorderSize = 0;
+            this.button.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Gainsboro;
+            this.button.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Gainsboro;
             this.button.Font = new System.Drawing.Font("Yu Gothic UI", 14.25F);
             this.button.Location = new System.Drawing.Point(145, 257);
             this.button.Name = "button";
-            this.button.Size = new System.Drawing.Size(148, 34);
+            this.button.Size = new System.Drawing.Size(153, 37);
             this.button.TabIndex = 6;
             this.button.TabStop = false;
             this.button.Text = "Удалить";
             this.button.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.button.UseVisualStyleBackColor = true;
             this.button.Click += new System.EventHandler(this.Button_Click);
+            this.button.MouseEnter += new System.EventHandler(this.Button_MouseEnter);
             // 
             // button2
             // 
@@ -141,7 +146,7 @@
             this.button2.IdleFillColor = System.Drawing.Color.White;
             this.button2.IdleForecolor = System.Drawing.SystemColors.ControlText;
             this.button2.IdleLineColor = System.Drawing.Color.Gainsboro;
-            this.button2.Location = new System.Drawing.Point(241, 84);
+            this.button2.Location = new System.Drawing.Point(243, 84);
             this.button2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(153, 37);
@@ -154,7 +159,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.ClientSize = new System.Drawing.Size(438, 299);
+            this.ClientSize = new System.Drawing.Size(442, 296);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button);
             this.Controls.Add(this.button1);

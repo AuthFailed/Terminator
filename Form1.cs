@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace New_app
@@ -80,7 +81,7 @@ namespace New_app
         }
 
         // Событие загрузки формы
-        private void Form1_Load(object sender, EventArgs e)
+        void Form1_Load(object sender, EventArgs e)
         {
             ToolTip t = new ToolTip();
             t.SetToolTip(TextBox, "Введите полный путь");
@@ -89,7 +90,7 @@ namespace New_app
         }
 
         // Диалоговое окно с выбором файла и запись пути в textbox
-        private void BunifuThinButton21_Click(object sender, EventArgs e)
+        void BunifuThinButton21_Click(object sender, EventArgs e)
         {
             OpenFileDialog myFile = new OpenFileDialog
             {
@@ -102,7 +103,7 @@ namespace New_app
         }
 
         //Информация о файле при вставке пути на файл вручную
-        private void TextBox_TextChanged(object sender, EventArgs e)
+        void TextBox_TextChanged(object sender, EventArgs e)
         {
             TextBox.Text = TextBox.Text.Trim('"');
             // Проверка на наличие чего-либо в textbox
@@ -143,18 +144,30 @@ namespace New_app
             }
         }
 
-        private void Button_Click(object sender, EventArgs e)
+        void Button_Click(object sender, EventArgs e)
         {
             Del(TextBox.Text);
         }
 
-        private void Button2_Click(object sender, EventArgs e)
+        void Button2_Click(object sender, EventArgs e)
         {
             DialogResult result = folderBrowserDialog1.ShowDialog();
             if (result == DialogResult.OK)
             {
                 string folderName = folderBrowserDialog1.SelectedPath;
                 TextBox.Text = folderName;
+            }
+        }
+
+        private void Button_MouseEnter(object sender, EventArgs e)
+        {
+            if (button.Enabled == true)
+            {
+                button.FlatAppearance.BorderColor = System.Drawing.Color.DodgerBlue;
+            }
+            else
+            {
+                button.FlatAppearance.BorderColor = System.Drawing.Color.Gainsboro;
             }
         }
     }
