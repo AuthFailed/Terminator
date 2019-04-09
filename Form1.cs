@@ -28,7 +28,7 @@ namespace New_app
                 if (!Directory.Exists(line))
                 {
                     // Если это и не файл, и не папка, то выдаем сообщение об ошибке
-                    MessageBox.Show("По этому пути ничего не найдено", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("По этому пути ничего не найдено!", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     button.Enabled = false;
                     TextBox.Text = null;
                     label2.Visible = false;
@@ -61,21 +61,25 @@ namespace New_app
                 if (result == DialogResult.Yes)
                 {
                     string filename = new FileInfo(TextBox.Text).Name;
-                    File.Delete(line);
+                    try
+                    {
+                        File.Delete(line);
+                    }
+                    catch(Exception ex)
+                    {
+                        MessageBox.Show("Не удалось удалить файл! \n Код ошибки скопирован в буфер обмена.", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        Clipboard.Clear();
+                        Clipboard.SetText(ex.ToString());
+                    }
                     if (!File.Exists(line))
                     {
                         // Если пользователь ответил согласием - удаляем файл и выводим оповещение об удалении
-                        Mess($"Файл {filename} успешно удален", null);
+                        Mess($"Файл {filename} успешно удален", "");
                         TextBox.Text = null;
                         label1.Visible = false;
                         label2.Text = null;
                         button.Enabled = false;
                     }
-                }
-                else
-                {
-                    //Если пользователь отказался удалять файл
-                    Mess("Отмена операции", "Внимание!");
                 }
             }
         }
@@ -87,7 +91,7 @@ namespace New_app
             t.SetToolTip(TextBox, "Введите полный путь");
             t.SetToolTip(button1, "Открыть меню выбор файла");
             label1.Visible = false;
-            for (Opacity = 0; Opacity < .98; Opacity += .03d)
+            for (Opacity = 0; Opacity < .95; Opacity += .03d)
             {
                 await Task.Delay(5);
             }
@@ -149,7 +153,16 @@ namespace New_app
 
         void Button_Click(object sender, EventArgs e)
         {
-            Del(TextBox.Text);
+            try
+            {
+                Del(TextBox.Text);
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Код ошибки скопирован в буфер. \n Отправьте его разработчику", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Clipboard.Clear();
+                Clipboard.SetText(ex.ToString());
+            }
         }
 
         void Button2_Click(object sender, EventArgs e)
