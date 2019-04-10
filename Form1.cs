@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Threading.Tasks;
+using System.Management;
 using System.Windows.Forms;
 
 namespace New_app
@@ -190,14 +191,16 @@ namespace New_app
             }
         }
 
-        async private void TextBox_Click(object sender, EventArgs e)
+        private void Label3_Click(object sender, EventArgs e)
         {
-            char[] anime = "Ну ты и пидор!".ToCharArray();
-            foreach(char gay in anime)
-            {
-                label2.Text += gay;
-                await Task.Delay(40);
-            }
+            string systeminfo = "Операционная система: " + Environment.OSVersion +
+                "\n Разрядность процессора: " + Environment.GetEnvironmentVariable("PROCESSOR_ARCHITECTURE") +
+                "\n Модель процессора: " + Environment.GetEnvironmentVariable("PROCESSOR_IDENTIFIER") +
+                "\n Путь к системному каталогу: " + Environment.SystemDirectory + 
+                "\n Число процессоров: " + Environment.ProcessorCount + 
+                "\n Имя пользователя: " + Environment.UserName;
+            
+            MessageBox.Show(systeminfo,"Информация о системе");
         }
     }
 }

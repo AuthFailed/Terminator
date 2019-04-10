@@ -39,6 +39,7 @@
             this.button1 = new Bunifu.Framework.UI.BunifuThinButton2();
             this.button2 = new Bunifu.Framework.UI.BunifuThinButton2();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -66,7 +67,6 @@
             this.TextBox.TabIndex = 1;
             this.TextBox.TabStop = false;
             this.TextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.TextBox.Click += new System.EventHandler(this.TextBox_Click);
             this.TextBox.TextChanged += new System.EventHandler(this.TextBox_TextChanged);
             // 
             // label1
@@ -162,12 +162,24 @@
             // 
             this.errorProvider1.ContainerControl = this;
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Yu Gothic UI", 14.25F);
+            this.label3.Location = new System.Drawing.Point(385, 269);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(45, 25);
+            this.label3.TabIndex = 8;
+            this.label3.Text = "Info";
+            this.label3.Click += new System.EventHandler(this.Label3_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.ClientSize = new System.Drawing.Size(442, 296);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button);
             this.Controls.Add(this.button1);
@@ -200,6 +212,7 @@
         private Bunifu.Framework.UI.BunifuThinButton2 button1;
         private Bunifu.Framework.UI.BunifuThinButton2 button2;
         private System.Windows.Forms.ErrorProvider errorProvider1;
+        private System.Windows.Forms.Label label3;
     }
 }
 
