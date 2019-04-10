@@ -89,7 +89,7 @@ namespace New_app
         {
             ToolTip t = new ToolTip();
             t.SetToolTip(TextBox, "Введите полный путь");
-            t.SetToolTip(button1, "Открыть меню выбор файла");
+            // t.SetToolTip(button1, "Открыть меню выбор файла");
             label1.Visible = false;
             for (Opacity = 0; Opacity < .95; Opacity += .03d)
             {
