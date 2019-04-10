@@ -189,5 +189,15 @@ namespace New_app
                 button.FlatAppearance.BorderColor = System.Drawing.Color.Gainsboro;
             }
         }
+
+        async private void TextBox_Click(object sender, EventArgs e)
+        {
+            char[] anime = "Ну ты и пидор!".ToCharArray();
+            foreach(char gay in anime)
+            {
+                label2.Text += gay;
+                await Task.Delay(40);
+            }
+        }
     }
 }

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.label = new System.Windows.Forms.Label();
             this.TextBox = new System.Windows.Forms.TextBox();
@@ -37,6 +38,8 @@
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.button1 = new Bunifu.Framework.UI.BunifuThinButton2();
             this.button2 = new Bunifu.Framework.UI.BunifuThinButton2();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // label
@@ -63,6 +66,7 @@
             this.TextBox.TabIndex = 1;
             this.TextBox.TabStop = false;
             this.TextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.TextBox.Click += new System.EventHandler(this.TextBox_Click);
             this.TextBox.TextChanged += new System.EventHandler(this.TextBox_TextChanged);
             // 
             // label1
@@ -154,6 +158,10 @@
             this.button2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.button2.Click += new System.EventHandler(this.Button2_Click);
             // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -175,6 +183,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Terminator";
             this.Load += new System.EventHandler(this.Form1_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -190,6 +199,7 @@
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
         private Bunifu.Framework.UI.BunifuThinButton2 button1;
         private Bunifu.Framework.UI.BunifuThinButton2 button2;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
     }
 }
 
