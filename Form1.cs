@@ -22,39 +22,7 @@ namespace New_app
         void Del(string line)
         {
             // При отсутствии файла выводим сообщение об ошибке и очищаем поля от информации
-            if (!File.Exists(line))
-            {
-                // Проверяем, а может это папка, а не файл?
-                if (!Directory.Exists(line))
-                {
-                    // Если это и не файл, и не папка, то выдаем сообщение об ошибке
-                    MessageBox.Show("По этому пути ничего не найдено!", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    button.Enabled = false;
-                    TextBox.Text = null;
-                    label2.Visible = false;
-                    label2.Text = null;
-                }
-                else
-                {
-                    // Если все-таки находим папку по такому пути, то спрашиваем пользователя о его решении
-                    DialogResult result = MessageBox.Show("Вы уверены?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    if (result == DialogResult.Yes)
-                    {
-                        string foldername = new DirectoryInfo(TextBox.Text).Name;
-                        Directory.Delete((line),true); //true - если директория не пуста удаляем все ее содержимое
-                        if (!Directory.Exists(line))
-                        {
-                            // Если пользователь ответил согласием - удаляем папку и выводим оповещение об удалении
-                            Mess($"Папка {foldername} успешно удалена", "");
-                            TextBox.Text = null;
-                            label1.Visible = false;
-                            label2.Text = null;
-                            button.Enabled = false;
-                        }
-                    }
-                }
-            }
-            else
+            if (File.Exists(line))
             {
                 // При наличии файла спрашиваем у пользователя о его решении
                 DialogResult result = MessageBox.Show("Вы уверены?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -65,7 +33,7 @@ namespace New_app
                     {
                         File.Delete(line);
                     }
-                    catch(Exception ex)
+                    catch (Exception ex)
                     {
                         MessageBox.Show("Не удалось удалить файл! \n Код ошибки скопирован в буфер обмена.", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         Clipboard.Clear();
@@ -81,6 +49,35 @@ namespace New_app
                         button.Enabled = false;
                     }
                 }
+            }
+            // Проверяем, а может это папка, а не файл?
+            else if (Directory.Exists(line))
+            {
+                // Если все-таки находим папку по такому пути, то спрашиваем пользователя о его решении
+                DialogResult result = MessageBox.Show("Вы уверены?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (result == DialogResult.Yes)
+                {
+                    string foldername = new DirectoryInfo(TextBox.Text).Name;
+                    Directory.Delete((line), true); //true - если директория не пуста удаляем все ее содержимое
+                    if (!Directory.Exists(line))
+                    {
+                        // Если пользователь ответил согласием - удаляем папку и выводим оповещение об удалении
+                        Mess($"Папка {foldername} успешно удалена", "");
+                        TextBox.Text = null;
+                        label1.Visible = false;
+                        label2.Text = null;
+                        button.Enabled = false;
+                    }
+                }
+            }
+            else
+            {
+                // Если это и не файл, и не папка, то выдаем сообщение об ошибке
+                MessageBox.Show("По этому пути ничего не найдено!", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                button.Enabled = false;
+                TextBox.Text = null;
+                label2.Visible = false;
+                label2.Text = null;
             }
         }
 
