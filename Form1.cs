@@ -72,7 +72,7 @@ namespace New_app
             }
             else
             {
-                // Если это и не файл, и не папка, то выдаем сообщение об ошибке
+                // Если это и не файл, и не папка, то выдаем сообщение об ошибке и очищаем поля
                 MessageBox.Show("По этому пути ничего не найдено!", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 button.Enabled = false;
                 TextBox.Text = null;
@@ -81,7 +81,7 @@ namespace New_app
             }
         }
 
-        // Событие загрузки формы
+        // Добавляем плавность открытия, подсказки на форму и свойства контролов
         async void Form1_Load(object sender, EventArgs e)
         {
             ToolTip t = new ToolTip();
@@ -93,8 +93,9 @@ namespace New_app
                 await Task.Delay(5);
             }
         }
-    // Диалоговое окно с выбором файла и запись пути в textbox
-    void BunifuThinButton21_Click(object sender, EventArgs e)
+
+        // Диалоговое окно с выбором файла и запись пути в textbox
+        private void Button1_Click(object sender, EventArgs e)
         {
             OpenFileDialog myFile = new OpenFileDialog
             {
@@ -106,6 +107,17 @@ namespace New_app
             }
         }
 
+        //Диалоговое окно с выбором папки
+        void Button2_Click(object sender, EventArgs e)
+        {
+            DialogResult result = folderBrowserDialog1.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                string folderName = folderBrowserDialog1.SelectedPath;
+                TextBox.Text = folderName;
+            }
+        }
+
         //Информация о файле при вставке пути на файл вручную
         void TextBox_TextChanged(object sender, EventArgs e)
         {
@@ -113,7 +125,7 @@ namespace New_app
             // Проверка на наличие чего-либо в textbox
             if (TextBox.Text != "")
             {
-                // Проверка файла на существование и выдача информации
+                // Проверяем файл на существование и выдаем о нем информацию информации
                 if (File.Exists(TextBox.Text))
                 {
                     button.Enabled = true;
@@ -124,6 +136,7 @@ namespace New_app
                                    "\n Изменялся: " + File.GetLastWriteTime(TextBox.Text) +
                                    "\n Размер файла: " + (Math.Round(Convert.ToDouble(File.ReadAllBytes(TextBox.Text).Length) / 1048576.0, 2)) + " мбайт";
                 }
+                // Если не находим файла, то пробуем найти папку по этому пути. Находим - выдаем информацию о папке
                 else if (Directory.Exists(TextBox.Text))
                 {
                     button.Enabled = true;
@@ -132,7 +145,7 @@ namespace New_app
                     DirectoryInfo FolderInfo = new DirectoryInfo(TextBox.Text);
                     label2.Text = "Создана: " + FolderInfo.CreationTime.ToString();
                 }
-                else
+                else //Если ничего не найдено по введеному пути - очищаем все поля программы
                 {
                     label1.Visible = false;
                     label2.Text = null;
@@ -147,31 +160,24 @@ namespace New_app
                 button.Enabled = false;
             }
         }
-
+        
+        // Вызываем метод удаления по нажатию на кнопку
         void Button_Click(object sender, EventArgs e)
         {
-            try
+            try //Запускаем обработчик исключений
             {
+                // Задаем методу путь до файла/папки
                 Del(TextBox.Text);
             }
-            catch(Exception ex)
+            catch(Exception ex) // Если в методе Del() происходит исключение, то выводим следующий текст
             {
                 MessageBox.Show("Код ошибки скопирован в буфер. \n Отправьте его разработчику", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                Clipboard.Clear();
-                Clipboard.SetText(ex.ToString());
+                Clipboard.Clear();                          //Очищаем буфер обмена чтобы избежать ошибки
+                Clipboard.SetText(ex.ToString());           //Добавляем ошибку в буфер для дальнейшей вставки
             }
         }
 
-        void Button2_Click(object sender, EventArgs e)
-        {
-            DialogResult result = folderBrowserDialog1.ShowDialog();
-            if (result == DialogResult.OK)
-            {
-                string folderName = folderBrowserDialog1.SelectedPath;
-                TextBox.Text = folderName;
-            }
-        }
-
+        // Меняем окантовку кнопки в зависимости от того поставлена на нее мышка или нет
         private void Button_MouseEnter(object sender, EventArgs e)
         {
             if (button.Enabled == true)

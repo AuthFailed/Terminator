@@ -126,7 +126,7 @@
             this.button1.Size = new System.Drawing.Size(153, 37);
             this.button1.TabIndex = 5;
             this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.button1.Click += new System.EventHandler(this.BunifuThinButton21_Click);
+            this.button1.Click += new System.EventHandler(this.Button1_Click);
             // 
             // button2
             // 
