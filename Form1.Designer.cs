@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.label = new System.Windows.Forms.Label();
             this.TextBox = new System.Windows.Forms.TextBox();
@@ -38,9 +37,6 @@
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.button1 = new Bunifu.Framework.UI.BunifuThinButton2();
             this.button2 = new Bunifu.Framework.UI.BunifuThinButton2();
-            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.label3 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // label
@@ -48,7 +44,7 @@
             this.label.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.label.Font = new System.Drawing.Font("Yu Gothic UI", 14.25F);
+            this.label.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 14.25F, System.Drawing.FontStyle.Bold);
             this.label.Location = new System.Drawing.Point(145, 13);
             this.label.Name = "label";
             this.label.Size = new System.Drawing.Size(157, 31);
@@ -80,7 +76,7 @@
             // 
             // label2
             // 
-            this.label2.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label2.Font = new System.Drawing.Font("Microsoft YaHei UI Light", 12F, System.Drawing.FontStyle.Italic);
             this.label2.Location = new System.Drawing.Point(14, 148);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(416, 106);
@@ -94,7 +90,7 @@
             this.button.FlatAppearance.BorderSize = 0;
             this.button.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Gainsboro;
             this.button.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Gainsboro;
-            this.button.Font = new System.Drawing.Font("Yu Gothic UI", 14.25F);
+            this.button.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 14.25F, System.Drawing.FontStyle.Bold);
             this.button.Location = new System.Drawing.Point(145, 257);
             this.button.Name = "button";
             this.button.Size = new System.Drawing.Size(153, 37);
@@ -158,28 +154,12 @@
             this.button2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.button2.Click += new System.EventHandler(this.Button2_Click);
             // 
-            // errorProvider1
-            // 
-            this.errorProvider1.ContainerControl = this;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Yu Gothic UI", 14.25F);
-            this.label3.Location = new System.Drawing.Point(385, 269);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(45, 25);
-            this.label3.TabIndex = 8;
-            this.label3.Text = "Info";
-            this.label3.Click += new System.EventHandler(this.Label3_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.ClientSize = new System.Drawing.Size(442, 296);
-            this.Controls.Add(this.label3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button);
             this.Controls.Add(this.button1);
@@ -195,7 +175,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Terminator";
             this.Load += new System.EventHandler(this.Form1_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -211,8 +190,6 @@
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
         private Bunifu.Framework.UI.BunifuThinButton2 button1;
         private Bunifu.Framework.UI.BunifuThinButton2 button2;
-        private System.Windows.Forms.ErrorProvider errorProvider1;
-        private System.Windows.Forms.Label label3;
     }
 }
 

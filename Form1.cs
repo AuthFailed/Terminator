@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
-using System.Management;
 using System.Windows.Forms;
 
 namespace New_app
@@ -32,6 +34,7 @@ namespace New_app
                     string filename = new FileInfo(TextBox.Text).Name;
                     try
                     {
+                        KillProcessesAssociatedToFile(line);
                         File.Delete(line);
                     }
                     catch (Exception ex)
@@ -89,7 +92,7 @@ namespace New_app
             t.SetToolTip(TextBox, "Введите полный путь");
             // t.SetToolTip(button1, "Открыть меню выбор файла");
             label1.Visible = false;
-            for (Opacity = 0; Opacity < .95; Opacity += .03d)
+            for (Opacity = 0; Opacity < .95; Opacity += .03)
             {
                 await Task.Delay(5);
             }
@@ -122,6 +125,7 @@ namespace New_app
         //Информация о файле при вставке пути на файл вручную
         void TextBox_TextChanged(object sender, EventArgs e)
         {
+            TextBox.Text = TextBox.Text.Trim();
             TextBox.Text = TextBox.Text.Trim('"');
             // Проверка на наличие чего-либо в textbox
             if (TextBox.Text != "")
@@ -167,8 +171,7 @@ namespace New_app
         {
             try //Запускаем обработчик исключений
             {
-                // Задаем методу путь до файла/папки
-                Del(TextBox.Text);
+                Del(TextBox.Text); // Задаем методу путь до файла/папки
             }
             catch(Exception ex) // Если в методе Del() происходит исключение, то выводим следующий текст
             {
@@ -191,16 +194,24 @@ namespace New_app
             }
         }
 
-        private void Label3_Click(object sender, EventArgs e)
+        // Убиваем процессы, ассоциированные с нашим файлом
+        public void KillProcessesAssociatedToFile(string file)
         {
-            string systeminfo = "Операционная система: " + Environment.OSVersion +
-                "\n Разрядность процессора: " + Environment.GetEnvironmentVariable("PROCESSOR_ARCHITECTURE") +
-                "\n Модель процессора: " + Environment.GetEnvironmentVariable("PROCESSOR_IDENTIFIER") +
-                "\n Путь к системному каталогу: " + Environment.SystemDirectory + 
-                "\n Число процессоров: " + Environment.ProcessorCount + 
-                "\n Имя пользователя: " + Environment.UserName;
-            
-            MessageBox.Show(systeminfo,"Информация о системе");
+            GetProcessesAssociatedToFile(file).ForEach(p =>
+            {
+                p.Kill();
+                p.WaitForExit(10000);
+            });
+        }
+
+        // Получаем список процессов которые имеют прямое отношение к удаляемому файлу
+        public List<Process> GetProcessesAssociatedToFile(string file)
+        {
+            return Process.GetProcesses()
+                .Where(p => !p.HasExited
+                    && p.Modules.Cast<ProcessModule>().ToList()
+                        .Exists(y => y.FileName.ToLowerInvariant() == file.ToLowerInvariant())
+                    ).ToList();
         }
     }
 }
