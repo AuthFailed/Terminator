@@ -82,7 +82,6 @@
             this.label2.Size = new System.Drawing.Size(416, 106);
             this.label2.TabIndex = 4;
             this.label2.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.label2.Click += new System.EventHandler(this.Label2_Click);
             // 
             // button
             // 

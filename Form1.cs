@@ -210,10 +210,5 @@ namespace New_app
                         .Exists(y => y.FileName.ToLowerInvariant() == file.ToLowerInvariant())
                     ).ToList();
         }
-
-        private void Label2_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }
