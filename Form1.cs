@@ -16,7 +16,7 @@ namespace New_app
         }
 
         // Метод для выдачи готового оповещения 
-        void Mess(string line1, string line2)
+        static void Mess(string line1, string line2)
         {
             MessageBox.Show(line1, line2, MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
@@ -85,21 +85,18 @@ namespace New_app
             }
         }
 
-        // Добавляем плавность открытия, подсказки на форму и свойства контролов
+        // Добавляем плавность открытия и свойства контролов
         async void Form1_Load(object sender, EventArgs e)
         {
-            ToolTip t = new ToolTip();
-            t.SetToolTip(TextBox, "Введите полный путь");
-            // t.SetToolTip(button1, "Открыть меню выбор файла");
             label1.Visible = false;
             for (Opacity = 0; Opacity < .95; Opacity += .03)
             {
-                await Task.Delay(5);
+                await Task.Delay(5).ConfigureAwait(false);
             }
         }
 
         // Диалоговое окно с выбором файла и запись пути в textbox
-        private void Button1_Click(object sender, EventArgs e)
+        void Button1_Click(object sender, EventArgs e)
         {
             OpenFileDialog myFile = new OpenFileDialog
             {
@@ -148,7 +145,7 @@ namespace New_app
                     label1.Visible = true;
                     label1.Text = "Информация о папке:";
                     DirectoryInfo FolderInfo = new DirectoryInfo(TextBox.Text);
-                    label2.Text = "Создана: " + FolderInfo.CreationTime.ToString();
+                    label2.Text = "Создана: " + FolderInfo.CreationTime.ToString().ToLower();
                 }
                 else //Если ничего не найдено по введеному пути - очищаем все поля программы
                 {
@@ -182,7 +179,7 @@ namespace New_app
         }
 
         // Меняем окантовку кнопки в зависимости от того поставлена на нее мышка или нет
-        private void Button_MouseEnter(object sender, EventArgs e)
+        void Button_MouseEnter(object sender, EventArgs e)
         {
             if (button.Enabled == true)
             {
@@ -195,7 +192,7 @@ namespace New_app
         }
 
         // Убиваем процессы, ассоциированные с нашим файлом
-        public void KillProcessesAssociatedToFile(string file)
+         static public void KillProcessesAssociatedToFile(string file)
         {
             GetProcessesAssociatedToFile(file).ForEach(p =>
             {
@@ -205,13 +202,18 @@ namespace New_app
         }
 
         // Получаем список процессов которые имеют прямое отношение к удаляемому файлу
-        public List<Process> GetProcessesAssociatedToFile(string file)
+        static public List<Process> GetProcessesAssociatedToFile(string file)
         {
             return Process.GetProcesses()
                 .Where(p => !p.HasExited
                     && p.Modules.Cast<ProcessModule>().ToList()
                         .Exists(y => y.FileName.ToLowerInvariant() == file.ToLowerInvariant())
                     ).ToList();
+        }
+
+        private void Label2_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

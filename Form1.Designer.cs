@@ -76,12 +76,13 @@
             // 
             // label2
             // 
-            this.label2.Font = new System.Drawing.Font("Microsoft YaHei UI Light", 12F, System.Drawing.FontStyle.Italic);
+            this.label2.Font = new System.Drawing.Font("Cambria", 14.25F, System.Drawing.FontStyle.Italic);
             this.label2.Location = new System.Drawing.Point(14, 148);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(416, 106);
             this.label2.TabIndex = 4;
             this.label2.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.label2.Click += new System.EventHandler(this.Label2_Click);
             // 
             // button
             // 
