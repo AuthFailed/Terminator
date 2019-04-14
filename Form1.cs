@@ -34,7 +34,6 @@ namespace New_app
                     string filename = new FileInfo(TextBox.Text).Name;
                     try
                     {
-                        KillProcessesAssociatedToFile(line);
                         File.Delete(line);
                     }
                     catch (Exception ex)
